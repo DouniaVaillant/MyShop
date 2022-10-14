@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+{{ form_start(form, {
+    attr: {
+        novalidate: 'novalidate'
+    }
+}) }}
+
+{# {{ form_row(form.membre) }} #}
+{# {{ form_row(form.quantite) }}
+{{ form_row(form.montant) }} #}
+{# {{ form_row(form.produit) }} #}
+
+<button type="submit" class="btn btn-warning">Enregistrer</button>
+
+{{ form_end(form) }}
+
+
+{% endblock %}

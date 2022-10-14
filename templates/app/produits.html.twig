@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center m-4">Nos produits</h1>
+
+
+	<div class="row justify-content-around">
+		{% for produit in produits %}
+			<div class="card col-3 border-primary m-1" style="max-width: 20rem;">
+				<div class="card-body">
+					<h4 class="card-title text-center">{{ produit.titre }}</h4>
+					<img src="{{ produit.photo }}" class="card-img">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item text-end">{{ produit.prix }}€</li>
+						<li class="list-group-item">
+						{% if produit.collection == 'h' %}
+							Homme
+						{% elseif produit.collection == 'f' %}
+							Femme
+						{% endif %} / 
+						{{ produit.taille }}
+						</li>
+						<li class="list-group-item">{{ produit.description }}</li>
+						<li class="list-group-item">En stock: {{ produit.stock }}</li>
+					</ul>
+			{% if produit.stock != 0 %}
+				<a class="btn btn-primary" href="{{ path('cart_add', {id: produit.id}) }}">Ajouter au panier</a>
+			{% else %}
+				<div class="btn btn-secondary border disalbled">Stock vide</div>
+			{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+
+{% endblock %}
